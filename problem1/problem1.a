@@ -1,0 +1,31 @@
+CREATE TABLE trade (stocksymbol INT, time INT, quantity INT, price INT)
+
+LOAD DATA INFILE "/home/yg3370/AQuery2/tests/trades.csv" INTO TABLE trade  FIELDS TERMINATED BY ","
+
+
+
+SELECT stocksymbol, sum(quantity*price)/sum(quantity) as average_weight
+    FROM trade
+    GROUP BY stocksymbol
+
+
+SELECT stocksymbol, avgs(10, price) as unweighted_moving_averages
+    FROM trade
+    ASSUMING ASC time
+    GROUP BY stocksymbol
+
+INTO OUTFILE "unweighted_moving_averages.csv"
+
+    SELECT stocksymbol, avgs(10, price*quantity) / avgs(10, quantity) as weighted_moving_averages
+    FROM trade
+    ASSUMING ASC time
+    GROUP BY stocksymbol
+
+INTO OUTFILE "weighted_moving_averages.csv"
+
+    SELECT stocksymbol, max(price - mins(price)) as max_profit
+    FROM trade
+    ASSUMING ASC time
+    GROUP BY stocksymbol
+
+INTO OUTFILE "max_profit.csv"
