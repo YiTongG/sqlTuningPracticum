@@ -1,0 +1,411 @@
+Script started on 2024-11-13 09:51:10-05:00 [TERM="xterm" TTY="/dev/pts/16" COLUMNS="80" LINES="58"]
+]0;yg3370@linserv1:~/AQuery2[?2004h[yg3370@linserv1 AQuery2]$ exitpython3 ./prompt.pyexit[Kpython3 ./prompt.py
+[?2004ltrue
+running
+-1 (null)
+> scripty [K[K -r [K[K[Ktet[Ksts/auer[K[K[Kquer[K[K[K[K[Kpreo[K[K[K[Krule2.aquery
+create fractal and uniform trade table
+QCREATE TABLE IF NOT EXISTS trade(stocksymbol INT, time INT, quantity INT, price INT);
+QCOPY OFFSET 2 INTO trade FROM  '/home/yg3370/AQuery2/tests/trades.csv'  ON SERVER    USING DELIMITERS  ',';
+QCREATE TABLE IF NOT EXISTS uniform_trade(stocksymbol INT, time INT, quantity INT, price INT);
+QCOPY OFFSET 2 INTO uniform_trade FROM  '/home/yg3370/AQuery2/tests/uniform_trade_data.csv'  ON SERVER    USING DELIMITERS  ',';
+Exec Q0: QCREATE TABLE IF NOT EXISTS trade(stocksymbol INT, time INT, quantity INT, price INT);
+ Exec Q1: QCOPY OFFSET 2 INTO trade FROM  '/home/yg3370/AQuery2/tests/trades.csv'  ON SERVER    USING DELIMITERS  ',';
+ Exec Q2: QCREATE TABLE IF NOT EXISTS uniform_trade(stocksymbol INT, time INT, quantity INT, price INT);
+ Exec Q3: QCOPY OFFSET 2 INTO uniform_trade FROM  '/home/yg3370/AQuery2/tests/uniform_trade_data.csv'  ON SERVER    USING DELIMITERS  ',';
+Parse Time: 0.8862555027008057, Codegen Time: 0.0020313262939453125, Compile Time: 2.86102294921875e-05, Execution Time: 5.8973305225372314.
+Total Time: 6.785645961761475
+:run origin query on fractal table
+QSELECT stocksymbol, AVG(price) AS avg_price  FROM trade WHERE ((stocksymbol = 3456)  AND  (time > 1000))  GROUP BY stocksymbol  ;
+Pdll_1dAqyS
+c++ -shared   -fPIC -include server/pch.hpp out.cpp libaquery.a  -I/usr/local/include/monetdb -I/usr/include/monetdb    -lmonetdbe -O3 -DNDEBUG  -fno-semantic-interposition -march=native -flto  --std=c++1z -o dll.so
+ Exec Q0: QSELECT stocksymbol, AVG(price) AS avg_price  FROM trade WHERE ((stocksymbol = 3456)  AND  (time > 1000))  GROUP BY stocksymbol  ;
+ Dbg: Getting col stocksymbol, type: monetdbe_int32_t
+Dbg: Getting col stocksymbol, type: monetdbe_int32_t
+Dbg: Getting col avg_price, type: monetdbe_double
+Dbg: Getting col avg_price, type: monetdbe_double
+stocksymbol | avg_price 
+========================
+3456 235.281
+done.
+Parse Time: 0.021046876907348633, Codegen Time: 0.006495237350463867, Compile Time: 0.8843369483947754, Execution Time: 0.15485668182373047.
+Total Time: 1.0667357444763184
+run origin query on uniform table
+QSELECT stocksymbol, AVG(price) AS avg_price  FROM uniform_trade WHERE ((stocksymbol = '3456')  AND  (time > 1000))  GROUP BY stocksymbol  ;
+Pdll_7vaAXA
+c++ -shared   -fPIC -include server/pch.hpp out.cpp libaquery.a  -I/usr/local/include/monetdb -I/usr/include/monetdb    -lmonetdbe -O3 -DNDEBUG  -fno-semantic-interposition -march=native -flto  --std=c++1z -o dll.so
+Exec Q0: QSELECT stocksymbol, AVG(price) AS avg_price  FROM uniform_trade WHERE ((stocksymbol = '3456')  AND  (time > 1000))  GROUP BY stocksymbol  ;
+ Dbg: Getting col stocksymbol, type: monetdbe_int32_t
+Dbg: Getting col stocksymbol, type: monetdbe_int32_t
+Dbg: Getting col avg_price, type: monetdbe_double
+Dbg: Getting col avg_price, type: monetdbe_double
+stocksymbol | avg_price 
+========================
+3456 471.552
+done.
+Parse Time: 0.015576601028442383, Codegen Time: 0.0047740936279296875, Compile Time: 0.9066202640533447, Execution Time: 0.16411948204040527.
+Total Time: 1.091090440750122
+split table by time
+QSELECT stocksymbol, AVG(price) AS avg_price  FROM uniform_trade WHERE ((time >= 1000)  AND  (time <= 1000000))  GROUP BY stocksymbol  ;
+Pdll_2SZhTt
+QSELECT stocksymbol, AVG(price) AS avg_price  FROM uniform_trade WHERE ((time > 1000000)  AND  (time <= 2000000))  GROUP BY stocksymbol  ;
+Pdll_1OOoaD
+QSELECT stocksymbol, AVG(price) AS avg_price  FROM uniform_trade WHERE ((time > 2000000)  AND  (time <= 3000000))  GROUP BY stocksymbol  ;
+Pdll_6RKZjC
+QSELECT stocksymbol, AVG(price) AS avg_price  FROM uniform_trade WHERE ((time > 3000000)  AND  (time <= 4000000))  GROUP BY stocksymbol  ;
+Pdll_1tdM38
+QSELECT stocksymbol, AVG(price) AS avg_price  FROM uniform_trade WHERE ((time > 4000000)  AND  (time <= 5000000))  GROUP BY stocksymbol  ;
+Pdll_6QkGsf
+QSELECT stocksymbol, AVG(price) AS avg_price  FROM uniform_trade WHERE ((time > 5000000)  AND  (time <= 6000000))  GROUP BY stocksymbol  ;
+Pdll_yhYWHy
+QSELECT stocksymbol, AVG(price) AS avg_price  FROM uniform_trade WHERE ((time > 6000000)  AND  (time <= 7000000))  GROUP BY stocksymbol  ;
+Pdll_1oNKSS
+QSELECT stocksymbol, AVG(price) AS avg_price  FROM uniform_trade WHERE ((time > 7000000)  AND  (time <= 8000000))  GROUP BY stocksymbol  ;
+Pdll_3vt2qK
+QSELECT stocksymbol, AVG(price) AS avg_price  FROM uniform_trade WHERE ((time > 8000000)  AND  (time <= 9000000))  GROUP BY stocksymbol  ;
+Pdll_2wdZgn
+QSELECT stocksymbol, AVG(price) AS avg_price  FROM uniform_trade WHERE ((time > 9000000)  AND  (time <= 10000000))  GROUP BY stocksymbol  ;
+Pdll_2JWcAy
+QSELECT stocksymbol, AVG(price) AS avg_price  FROM trade WHERE ((time >= 1000)  AND  (time <= 1000000))  GROUP BY stocksymbol  ;
+Pdll_1NDC5Q
+QSELECT stocksymbol, AVG(price) AS avg_price  FROM trade WHERE ((time > 1000000)  AND  (time <= 2000000))  GROUP BY stocksymbol  ;
+Pdll_69YPsr
+QSELECT stocksymbol, AVG(price) AS avg_price  FROM trade WHERE ((time > 2000000)  AND  (time <= 3000000))  GROUP BY stocksymbol  ;
+Pdll_4xiun9
+QSELECT stocksymbol, AVG(price) AS avg_price  FROM trade WHERE ((time > 3000000)  AND  (time <= 4000000))  GROUP BY stocksymbol  ;
+Pdll_1YmsFJ
+QSELECT stocksymbol, AVG(price) AS avg_price  FROM trade WHERE ((time > 4000000)  AND  (time <= 5000000))  GROUP BY stocksymbol  ;
+Pdll_4bsP7I
+QSELECT stocksymbol, AVG(price) AS avg_price  FROM trade WHERE ((time > 5000000)  AND  (time <= 6000000))  GROUP BY stocksymbol  ;
+Pdll_6wqXWg
+QSELECT stocksymbol, AVG(price) AS avg_price  FROM trade WHERE ((time > 6000000)  AND  (time <= 7000000))  GROUP BY stocksymbol  ;
+Pdll_5Ej0OT
+QSELECT stocksymbol, AVG(price) AS avg_price  FROM trade WHERE ((time > 7000000)  AND  (time <= 8000000))  GROUP BY stocksymbol  ;
+Pdll_6DEESF
+QSELECT stocksymbol, AVG(price) AS avg_price  FROM trade WHERE ((time > 8000000)  AND  (time <= 9000000))  GROUP BY stocksymbol  ;
+Pdll_6B6BQ2
+QSELECT stocksymbol, AVG(price) AS avg_price  FROM trade WHERE ((time > 9000000)  AND  (time <= 10000000))  GROUP BY stocksymbol  ;
+Pdll_5j835N
+c++ -shared   -fPIC -include server/pch.hpp out.cpp libaquery.a  -I/usr/local/include/monetdb -I/usr/include/monetdb    -lmonetdbe -O3 -DNDEBUG  -fno-semantic-interposition -march=native -flto  --std=c++1z -o dll.so
+Exec Q0: QSELECT stocksymbol, AVG(price) AS avg_price  FROM uniform_trade WHERE ((time >= 1000)  AND  (time <= 1000000))  GROUP BY stocksymbol  ;
+ Dbg: Getting col stocksymbol, type: monetdbe_int32_t
+Dbg: Getting col stocksymbol, type: monetdbe_int32_t
+Dbg: Getting col avg_price, type: monetdbe_double
+Dbg: Getting col avg_price, type: monetdbe_double
+getcols...
+0 0
+1 1
+getcols done
+no:0 name: stocksymbol count:70000 data: 0x7f7f58f494d0 type:3 
+no:1 name: avg_price count:70000 data: 0x7f7f59a53910 type:8 
+create table...
+CREATE TABLE IF NOT EXISTS uni_trade_1m (stocksymbol INT, avg_price DOUBLE) 
+done.
+Exec Q2: QSELECT stocksymbol, AVG(price) AS avg_price  FROM uniform_trade WHERE ((time > 1000000)  AND  (time <= 2000000))  GROUP BY stocksymbol  ;
+ Dbg: Getting col stocksymbol, type: monetdbe_int32_t
+Dbg: Getting col stocksymbol, type: monetdbe_int32_t
+Dbg: Getting col avg_price, type: monetdbe_double
+Dbg: Getting col avg_price, type: monetdbe_double
+getcols...
+0 0
+1 1
+getcols done
+no:0 name: stocksymbol count:70000 data: 0x7f7f59b0cb90 type:3 
+no:1 name: avg_price count:70000 data: 0x7f7f58eb22e0 type:8 
+create table...
+CREATE TABLE IF NOT EXISTS uni_trade_1m_2m (stocksymbol INT, avg_price DOUBLE) 
+done.
+Exec Q4: QSELECT stocksymbol, AVG(price) AS avg_price  FROM uniform_trade WHERE ((time > 2000000)  AND  (time <= 3000000))  GROUP BY stocksymbol  ;
+ Dbg: Getting col stocksymbol, type: monetdbe_int32_t
+Dbg: Getting col stocksymbol, type: monetdbe_int32_t
+Dbg: Getting col avg_price, type: monetdbe_double
+Dbg: Getting col avg_price, type: monetdbe_double
+getcols...
+0 0
+1 1
+getcols done
+no:0 name: stocksymbol count:70000 data: 0x7f7f595c5a10 type:3 
+no:1 name: avg_price count:70000 data: 0x7f7f58a42050 type:8 
+create table...
+CREATE TABLE IF NOT EXISTS uni_trade_2m_3m (stocksymbol INT, avg_price DOUBLE) 
+done.
+Exec Q6: QSELECT stocksymbol, AVG(price) AS avg_price  FROM uniform_trade WHERE ((time > 3000000)  AND  (time <= 4000000))  GROUP BY stocksymbol  ;
+ Dbg: Getting col stocksymbol, type: monetdbe_int32_t
+Dbg: Getting col stocksymbol, type: monetdbe_int32_t
+Dbg: Getting col avg_price, type: monetdbe_double
+Dbg: Getting col avg_price, type: monetdbe_double
+getcols...
+0 0
+1 1
+getcols done
+no:0 name: stocksymbol count:70000 data: 0x7f7f5905e9b0 type:3 
+no:1 name: avg_price count:70000 data: 0x7f7f59834210 type:8 
+create table...
+CREATE TABLE IF NOT EXISTS uni_trade_3m_4m (stocksymbol INT, avg_price DOUBLE) 
+done.
+Exec Q8: QSELECT stocksymbol, AVG(price) AS avg_price  FROM uniform_trade WHERE ((time > 4000000)  AND  (time <= 5000000))  GROUP BY stocksymbol  ;
+ Dbg: Getting col stocksymbol, type: monetdbe_int32_t
+Dbg: Getting col stocksymbol, type: monetdbe_int32_t
+Dbg: Getting col avg_price, type: monetdbe_double
+Dbg: Getting col avg_price, type: monetdbe_double
+getcols...
+0 0
+1 1
+getcols done
+no:0 name: stocksymbol count:70000 data: 0x7f7f599885f0 type:3 
+no:1 name: avg_price count:70000 data: 0x7f7f5a15cc50 type:8 
+create table...
+CREATE TABLE IF NOT EXISTS uni_trade_4m_5m (stocksymbol INT, avg_price DOUBLE) 
+done.
+Exec Q10: QSELECT stocksymbol, AVG(price) AS avg_price  FROM uniform_trade WHERE ((time > 5000000)  AND  (time <= 6000000))  GROUP BY stocksymbol  ;
+ Dbg: Getting col stocksymbol, type: monetdbe_int32_t
+Dbg: Getting col stocksymbol, type: monetdbe_int32_t
+Dbg: Getting col avg_price, type: monetdbe_double
+Dbg: Getting col avg_price, type: monetdbe_double
+getcols...
+0 0
+1 1
+getcols done
+no:0 name: stocksymbol count:69999 data: 0x7f7f589e5f40 type:3 
+no:1 name: avg_price count:69999 data: 0x7f7f5a396b70 type:8 
+create table...
+CREATE TABLE IF NOT EXISTS uni_trade_5m_6m (stocksymbol INT, avg_price DOUBLE) 
+done.
+Exec Q12: QSELECT stocksymbol, AVG(price) AS avg_price  FROM uniform_trade WHERE ((time > 6000000)  AND  (time <= 7000000))  GROUP BY stocksymbol  ;
+ Dbg: Getting col stocksymbol, type: monetdbe_int32_t
+Dbg: Getting col stocksymbol, type: monetdbe_int32_t
+Dbg: Getting col avg_price, type: monetdbe_double
+Dbg: Getting col avg_price, type: monetdbe_double
+getcols...
+0 0
+1 1
+getcols done
+no:0 name: stocksymbol count:70000 data: 0x7f7f5973def0 type:3 
+no:1 name: avg_price count:70000 data: 0x7f7f5a4a8290 type:8 
+create table...
+CREATE TABLE IF NOT EXISTS uni_trade_6m_7m (stocksymbol INT, avg_price DOUBLE) 
+done.
+Exec Q14: QSELECT stocksymbol, AVG(price) AS avg_price  FROM uniform_trade WHERE ((time > 7000000)  AND  (time <= 8000000))  GROUP BY stocksymbol  ;
+ Dbg: Getting col stocksymbol, type: monetdbe_int32_t
+Dbg: Getting col stocksymbol, type: monetdbe_int32_t
+Dbg: Getting col avg_price, type: monetdbe_double
+Dbg: Getting col avg_price, type: monetdbe_double
+getcols...
+0 0
+1 1
+getcols done
+no:0 name: stocksymbol count:70000 data: 0x7f7f58ffc8b0 type:3 
+no:1 name: avg_price count:70000 data: 0x7f7f5a5b99d0 type:8 
+create table...
+CREATE TABLE IF NOT EXISTS uni_trade_7m_8m (stocksymbol INT, avg_price DOUBLE) 
+done.
+Exec Q16: QSELECT stocksymbol, AVG(price) AS avg_price  FROM uniform_trade WHERE ((time > 8000000)  AND  (time <= 9000000))  GROUP BY stocksymbol  ;
+ Dbg: Getting col stocksymbol, type: monetdbe_int32_t
+Dbg: Getting col stocksymbol, type: monetdbe_int32_t
+Dbg: Getting col avg_price, type: monetdbe_double
+Dbg: Getting col avg_price, type: monetdbe_double
+getcols...
+0 0
+1 1
+getcols done
+no:0 name: stocksymbol count:70000 data: 0x7f7f59617b00 type:3 
+no:1 name: avg_price count:70000 data: 0x7f7f5a6cb110 type:8 
+create table...
+CREATE TABLE IF NOT EXISTS uni_trade_8m_9m (stocksymbol INT, avg_price DOUBLE) 
+done.
+Exec Q18: QSELECT stocksymbol, AVG(price) AS avg_price  FROM uniform_trade WHERE ((time > 9000000)  AND  (time <= 10000000))  GROUP BY stocksymbol  ;
+ Dbg: Getting col stocksymbol, type: monetdbe_int32_t
+Dbg: Getting col stocksymbol, type: monetdbe_int32_t
+Dbg: Getting col avg_price, type: monetdbe_double
+Dbg: Getting col avg_price, type: monetdbe_double
+getcols...
+0 0
+1 1
+getcols done
+no:0 name: stocksymbol count:70000 data: 0x7f7f59cc0170 type:3 
+no:1 name: avg_price count:70000 data: 0x7f7f5a7dc850 type:8 
+create table...
+CREATE TABLE IF NOT EXISTS uni_trade_9m_10m (stocksymbol INT, avg_price DOUBLE) 
+done.
+Exec Q20: QSELECT stocksymbol, AVG(price) AS avg_price  FROM trade WHERE ((time >= 1000)  AND  (time <= 1000000))  GROUP BY stocksymbol  ;
+ Dbg: Getting col stocksymbol, type: monetdbe_int32_t
+Dbg: Getting col stocksymbol, type: monetdbe_int32_t
+Dbg: Getting col avg_price, type: monetdbe_double
+Dbg: Getting col avg_price, type: monetdbe_double
+getcols...
+0 0
+1 1
+getcols done
+no:0 name: stocksymbol count:69997 data: 0x7f7f59926460 type:3 
+no:1 name: avg_price count:69997 data: 0x7f7f5a8edf90 type:8 
+create table...
+CREATE TABLE IF NOT EXISTS frac_trade_1m (stocksymbol INT, avg_price DOUBLE) 
+done.
+Exec Q22: QSELECT stocksymbol, AVG(price) AS avg_price  FROM trade WHERE ((time > 1000000)  AND  (time <= 2000000))  GROUP BY stocksymbol  ;
+ Dbg: Getting col stocksymbol, type: monetdbe_int32_t
+Dbg: Getting col stocksymbol, type: monetdbe_int32_t
+Dbg: Getting col avg_price, type: monetdbe_double
+Dbg: Getting col avg_price, type: monetdbe_double
+getcols...
+0 0
+1 1
+getcols done
+no:0 name: stocksymbol count:69998 data: 0x7f7f58934cc0 type:3 
+no:1 name: avg_price count:69998 data: 0x7f7f5a9ff690 type:8 
+create table...
+CREATE TABLE IF NOT EXISTS frac_trade_1m_2m (stocksymbol INT, avg_price DOUBLE) 
+done.
+Exec Q24: QSELECT stocksymbol, AVG(price) AS avg_price  FROM trade WHERE ((time > 2000000)  AND  (time <= 3000000))  GROUP BY stocksymbol  ;
+ Dbg: Getting col stocksymbol, type: monetdbe_int32_t
+Dbg: Getting col stocksymbol, type: monetdbe_int32_t
+Dbg: Getting col avg_price, type: monetdbe_double
+Dbg: Getting col avg_price, type: monetdbe_double
+getcols...
+0 0
+1 1
+getcols done
+no:0 name: stocksymbol count:69997 data: 0x7f7f59b58cd0 type:3 
+no:1 name: avg_price count:69997 data: 0x7f7f5ab10db0 type:8 
+create table...
+CREATE TABLE IF NOT EXISTS frac_trade_2m_3m (stocksymbol INT, avg_price DOUBLE) 
+done.
+Exec Q26: QSELECT stocksymbol, AVG(price) AS avg_price  FROM trade WHERE ((time > 3000000)  AND  (time <= 4000000))  GROUP BY stocksymbol  ;
+ Dbg: Getting col stocksymbol, type: monetdbe_int32_t
+Dbg: Getting col stocksymbol, type: monetdbe_int32_t
+Dbg: Getting col avg_price, type: monetdbe_double
+Dbg: Getting col avg_price, type: monetdbe_double
+getcols...
+0 0
+1 1
+getcols done
+no:0 name: stocksymbol count:69997 data: 0x7f7f59bbfe30 type:3 
+no:1 name: avg_price count:69997 data: 0x7f7f5ac224b0 type:8 
+create table...
+CREATE TABLE IF NOT EXISTS frac_trade_3m_4m (stocksymbol INT, avg_price DOUBLE) 
+done.
+Exec Q28: QSELECT stocksymbol, AVG(price) AS avg_price  FROM trade WHERE ((time > 4000000)  AND  (time <= 5000000))  GROUP BY stocksymbol  ;
+ Dbg: Getting col stocksymbol, type: monetdbe_int32_t
+Dbg: Getting col stocksymbol, type: monetdbe_int32_t
+Dbg: Getting col avg_price, type: monetdbe_double
+Dbg: Getting col avg_price, type: monetdbe_double
+getcols...
+0 0
+1 1
+getcols done
+no:0 name: stocksymbol count:69999 data: 0x7f7f5930f330 type:3 
+no:1 name: avg_price count:69999 data: 0x7f7f5ad33bb0 type:8 
+create table...
+CREATE TABLE IF NOT EXISTS frac_trade_4m_5m (stocksymbol INT, avg_price DOUBLE) 
+done.
+Exec Q30: QSELECT stocksymbol, AVG(price) AS avg_price  FROM trade WHERE ((time > 5000000)  AND  (time <= 6000000))  GROUP BY stocksymbol  ;
+ Dbg: Getting col stocksymbol, type: monetdbe_int32_t
+Dbg: Getting col stocksymbol, type: monetdbe_int32_t
+Dbg: Getting col avg_price, type: monetdbe_double
+Dbg: Getting col avg_price, type: monetdbe_double
+getcols...
+0 0
+1 1
+getcols done
+no:0 name: stocksymbol count:69998 data: 0x7f7f58df6f50 type:3 
+no:1 name: avg_price count:69998 data: 0x7f7f5ae452d0 type:8 
+create table...
+CREATE TABLE IF NOT EXISTS frac_trade_5m_6m (stocksymbol INT, avg_price DOUBLE) 
+done.
+Exec Q32: QSELECT stocksymbol, AVG(price) AS avg_price  FROM trade WHERE ((time > 6000000)  AND  (time <= 7000000))  GROUP BY stocksymbol  ;
+ Dbg: Getting col stocksymbol, type: monetdbe_int32_t
+Dbg: Getting col stocksymbol, type: monetdbe_int32_t
+Dbg: Getting col avg_price, type: monetdbe_double
+Dbg: Getting col avg_price, type: monetdbe_double
+getcols...
+0 0
+1 1
+getcols done
+no:0 name: stocksymbol count:69999 data: 0x7f7f5af9afc0 type:3 
+no:1 name: avg_price count:69999 data: 0x7f7f5afdf5a0 type:8 
+create table...
+CREATE TABLE IF NOT EXISTS frac_trade_6m_7m (stocksymbol INT, avg_price DOUBLE) 
+done.
+Exec Q34: QSELECT stocksymbol, AVG(price) AS avg_price  FROM trade WHERE ((time > 7000000)  AND  (time <= 8000000))  GROUP BY stocksymbol  ;
+ Dbg: Getting col stocksymbol, type: monetdbe_int32_t
+Dbg: Getting col stocksymbol, type: monetdbe_int32_t
+Dbg: Getting col avg_price, type: monetdbe_double
+Dbg: Getting col avg_price, type: monetdbe_double
+getcols...
+0 0
+1 1
+getcols done
+no:0 name: stocksymbol count:69995 data: 0x7f7f5b1352a0 type:3 
+no:1 name: avg_price count:69995 data: 0x7f7f5b179870 type:8 
+create table...
+CREATE TABLE IF NOT EXISTS frac_trade_7m_8m (stocksymbol INT, avg_price DOUBLE) 
+done.
+Exec Q36: QSELECT stocksymbol, AVG(price) AS avg_price  FROM trade WHERE ((time > 8000000)  AND  (time <= 9000000))  GROUP BY stocksymbol  ;
+ Dbg: Getting col stocksymbol, type: monetdbe_int32_t
+Dbg: Getting col stocksymbol, type: monetdbe_int32_t
+Dbg: Getting col avg_price, type: monetdbe_double
+Dbg: Getting col avg_price, type: monetdbe_double
+getcols...
+0 0
+1 1
+getcols done
+no:0 name: stocksymbol count:69998 data: 0x7f7f5b2cf520 type:3 
+no:1 name: avg_price count:69998 data: 0x7f7f5b313af0 type:8 
+create table...
+CREATE TABLE IF NOT EXISTS frac_trade_8m_9m (stocksymbol INT, avg_price DOUBLE) 
+done.
+Exec Q38: QSELECT stocksymbol, AVG(price) AS avg_price  FROM trade WHERE ((time > 9000000)  AND  (time <= 10000000))  GROUP BY stocksymbol  ;
+ Dbg: Getting col stocksymbol, type: monetdbe_int32_t
+Dbg: Getting col stocksymbol, type: monetdbe_int32_t
+Dbg: Getting col avg_price, type: monetdbe_double
+Dbg: Getting col avg_price, type: monetdbe_double
+getcols...
+0 0
+1 1
+getcols done
+no:0 name: stocksymbol count:69998 data: 0x7f7f5b4697e0 type:3 
+no:1 name: avg_price count:69998 data: 0x7f7f5b4addb0 type:8 
+create table...
+CREATE TABLE IF NOT EXISTS frac_trade_9m_10m (stocksymbol INT, avg_price DOUBLE) 
+done.
+Parse Time: 0.44055938720703125, Codegen Time: 0.03808736801147461, Compile Time: 1.6331250667572021, Execution Time: 3.6686975955963135.
+Total Time: 5.7804694175720215
+query apply to time-split fractal tables
+QSELECT t1.stocksymbol, ((t1.avg_price + t2.avg_price + t3.avg_price + t4.avg_price + t5.avg_price + t6.avg_price + t7.avg_price + t8.avg_price + t9.avg_price + t10.avg_price) / 10) AS final_avg_price  FROM frac_trade_1m t1, frac_trade_1m_2m t2, frac_trade_2m_3m t3, frac_trade_3m_4m t4, frac_trade_4m_5m t5, frac_trade_5m_6m t6, frac_trade_6m_7m t7, frac_trade_7m_8m t8, frac_trade_8m_9m t9, frac_trade_9m_10m t10 WHERE ((t1.stocksymbol = t2.stocksymbol)  AND  (t2.stocksymbol = t3.stocksymbol)  AND  (t3.stocksymbol = t4.stocksymbol)  AND  (t4.stocksymbol = t5.stocksymbol)  AND  (t5.stocksymbol = t6.stocksymbol)  AND  (t6.stocksymbol = t7.stocksymbol)  AND  (t7.stocksymbol = t8.stocksymbol)  AND  (t8.stocksymbol = t9.stocksymbol)  AND  (t9.stocksymbol = t10.stocksymbol)  AND  (t1.stocksymbol = 3456))  ;
+Pdll_7fILWv
+c++ -shared   -fPIC -include server/pch.hpp out.cpp libaquery.a  -I/usr/local/include/monetdb -I/usr/include/monetdb    -lmonetdbe -O3 -DNDEBUG  -fno-semantic-interposition -march=native -flto  --std=c++1z -o dll.so
+Exec Q0: QSELECT t1.stocksymbol, ((t1.avg_price + t2.avg_price + t3.avg_price + t4.avg_price + t5.avg_price + t6.avg_price + t7.avg_price + t8.avg_price + t9.avg_price + t10.avg_price) / 10) AS final_avg_price  FROM frac_trade_1m t1, frac_trade_1m_2m t2, frac_trade_2m_3m t3, frac_trade_3m_4m t4, frac_trade_4m_5m t5, frac_trade_5m_6m t6, frac_trade_6m_7m t7, frac_trade_7m_8m t8, frac_trade_8m_9m t9, frac_trade_9m_10m t10 WHERE ((t1.stocksymbol = t2.stocksymbol)  AND  (t2.stocksymbol = t3.stocksymbol)  AND  (t3.stocksymbol = t4.stocksymbol)  AND  (t4.stocksymbol = t5.stocksymbol)  AND  (t5.stocksymbol = t6.stocksymbol)  AND  (t6.stocksymbol = t7.stocksymbol)  AND  (t7.stocksymbol = t8.stocksymbol)  AND  (t8.stocksymbol = t9.stocksymbol)  AND  (t9.stocksymbol = t10.stocksymbol)  AND  (t1.stocksymbol = 3456))  ;
+ Dbg: Getting col stocksymbol, type: monetdbe_int32_t
+Dbg: Getting col stocksymbol, type: monetdbe_int32_t
+Dbg: Getting col stocksymbol, type: monetdbe_int32_t
+Dbg: Getting col final_avg_price, type: monetdbe_double
+Dbg: Getting col final_avg_price, type: monetdbe_double
+t1stocksymbol | final_avg_price 
+================================
+3456 235.927
+done.
+Parse Time: 0.2438814640045166, Codegen Time: 0.00833892822265625, Compile Time: 0.9467957019805908, Execution Time: 0.1140902042388916.
+Total Time: 1.3131062984466553
+query apply to time-split uniform tables
+QSELECT d1.stocksymbol, ((d1.avg_price + d2.avg_price + d3.avg_price + d4.avg_price + d5.avg_price + d6.avg_price + d7.avg_price + d8.avg_price + d9.avg_price + d10.avg_price) / 10) AS final_avg_price  FROM uni_trade_1m d1, uni_trade_1m_2m d2, uni_trade_2m_3m d3, uni_trade_3m_4m d4, uni_trade_4m_5m d5, uni_trade_5m_6m d6, uni_trade_6m_7m d7, uni_trade_7m_8m d8, uni_trade_8m_9m d9, uni_trade_9m_10m d10 WHERE ((d1.stocksymbol = d2.stocksymbol)  AND  (d2.stocksymbol = d3.stocksymbol)  AND  (d3.stocksymbol = d4.stocksymbol)  AND  (d4.stocksymbol = d5.stocksymbol)  AND  (d5.stocksymbol = d6.stocksymbol)  AND  (d6.stocksymbol = d7.stocksymbol)  AND  (d7.stocksymbol = d8.stocksymbol)  AND  (d8.stocksymbol = d9.stocksymbol)  AND  (d9.stocksymbol = d10.stocksymbol)  AND  (d1.stocksymbol = 3456))  ;
+Pdll_497ZUI
+c++ -shared   -fPIC -include server/pch.hpp out.cpp libaquery.a  -I/usr/local/include/monetdb -I/usr/include/monetdb    -lmonetdbe -O3 -DNDEBUG  -fno-semantic-interposition -march=native -flto  --std=c++1z -o dll.so
+Exec Q0: QSELECT d1.stocksymbol, ((d1.avg_price + d2.avg_price + d3.avg_price + d4.avg_price + d5.avg_price + d6.avg_price + d7.avg_price + d8.avg_price + d9.avg_price + d10.avg_price) / 10) AS final_avg_price  FROM uni_trade_1m d1, uni_trade_1m_2m d2, uni_trade_2m_3m d3, uni_trade_3m_4m d4, uni_trade_4m_5m d5, uni_trade_5m_6m d6, uni_trade_6m_7m d7, uni_trade_7m_8m d8, uni_trade_8m_9m d9, uni_trade_9m_10m d10 WHERE ((d1.stocksymbol = d2.stocksymbol)  AND  (d2.stocksymbol = d3.stocksymbol)  AND  (d3.stocksymbol = d4.stocksymbol)  AND  (d4.stocksymbol = d5.stocksymbol)  AND  (d5.stocksymbol = d6.stocksymbol)  AND  (d6.stocksymbol = d7.stocksymbol)  AND  (d7.stocksymbol = d8.stocksymbol)  AND  (d8.stocksymbol = d9.stocksymbol)  AND  (d9.stocksymbol = d10.stocksymbol)  AND  (d1.stocksymbol = 3456))  ;
+ Dbg: Getting col stocksymbol, type: monetdbe_int32_t
+Dbg: Getting col stocksymbol, type: monetdbe_int32_t
+Dbg: Getting col stocksymbol, type: monetdbe_int32_t
+Dbg: Getting col final_avg_price, type: monetdbe_double
+Dbg: Getting col final_avg_price, type: monetdbe_double
+d1stocksymbol | final_avg_price 
+================================
+3456 471.067
+done.
+Parse Time: 0.06605029106140137, Codegen Time: 0.0077362060546875, Compile Time: 0.966484785079956, Execution Time: 0.0753316879272461.
+Total Time: 1.115602970123291
+
+Bye.
+
+Bye.
+]0;yg3370@linserv1:~/AQuery2[?2004h[yg3370@linserv1 AQuery2]$ exit
+[?2004lexit
+
+Script done on 2024-11-13 09:51:59-05:00 [COMMAND_EXIT_CODE="0"]

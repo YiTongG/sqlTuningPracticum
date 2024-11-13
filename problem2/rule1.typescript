@@ -1,0 +1,101 @@
+Script started on 2024-11-13 09:43:13-05:00 [TERM="xterm" TTY="/dev/pts/16" COLUMNS="80" LINES="58"]
+]0;yg3370@linserv1:~/AQuery2[?2004h[yg3370@linserv1 AQuery2]$ vim split_table.a[14@mv chopping_uni.a[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cls[Kvim rule2.aquery[3@rm -rf[C[C[C[C[C[C[C[C[C[C[C[C[C[3Pvim[C[C[C[C[C[C[C[C[C[C[C[C[C[6@rm -rf -f[C[C[C[C[C[C[C[C[C[C[C[C[C[6Pvim[C[C[C[C[C[C[C[C[C[C[C[C[C[3@rm -rf[C[C[C[C[C[C[C[C[C[C[C[C[C[3Pvim[C[C[C[C[C[C[C[C[C[C[C[C[C[3@rm -rf[C[C[C[C[C[C[C[C[C[C[C[C[Cls[Kvim rule2.aquery[7@rm -rf -f [C[C[C[C[C[C[C[C[C[C[C[C[C[3Pr[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[4Pvim[C[C[C[C[C[C[C[C[C[C[C[C[C[4Prule1.aqueryls[Kcd testspython3 ./prompt.pycd ../[K[4Plscd ../python3 ./prompt.py
+[?2004ltrue
+running
+-1 (null)
+> scripty[K rule1.q[Kaquerytrule1.aquery[C[C[C[C[C[C[C[C[C[Cerule1.aquerysrule1.aquerytrule1.aquerysrule1.aquery/rule1.aquery
+QSELECT 'Hello, World!'  ;
+Pdll_5YS7xR
+c++ -shared   -fPIC -include server/pch.hpp out.cpp libaquery.a  -I/usr/local/include/monetdb -I/usr/include/monetdb    -lmonetdbe -O3 -DNDEBUG  -fno-semantic-interposition -march=native -flto  --std=c++1z -o dll.so
+Exec Q0: QSELECT 'Hello, World!'  ;
+ Dbg: Getting col %2, type: monetdbe_str
+helloworld 
+===========
+Hello, World!
+done.
+Parse Time: 0.8693602085113525, Codegen Time: 0.005820035934448242, Compile Time: 0.8398137092590332, Execution Time: 0.7567884922027588.
+Total Time: 2.4717824459075928
+create fractal and uniform trade table
+QCREATE TABLE IF NOT EXISTS trade(stocksymbol INT, time INT, quantity INT, price INT);
+QCOPY OFFSET 2 INTO trade FROM  '/home/yg3370/AQuery2/tests/trades.csv'  ON SERVER    USING DELIMITERS  ',';
+QCREATE TABLE IF NOT EXISTS uniform_trade(stocksymbol INT, time INT, quantity INT, price INT);
+QCOPY OFFSET 2 INTO uniform_trade FROM  '/home/yg3370/AQuery2/tests/uniform_trade_data.csv'  ON SERVER    USING DELIMITERS  ',';
+c++ -shared   -fPIC -include server/pch.hpp out.cpp libaquery.a  -I/usr/local/include/monetdb -I/usr/include/monetdb    -lmonetdbe -O3 -DNDEBUG  -fno-semantic-interposition -march=native -flto  --std=c++1z -o dll.so
+Exec Q0: QCREATE TABLE IF NOT EXISTS trade(stocksymbol INT, time INT, quantity INT, price INT);
+ Exec Q1: QCOPY OFFSET 2 INTO trade FROM  '/home/yg3370/AQuery2/tests/trades.csv'  ON SERVER    USING DELIMITERS  ',';
+ Exec Q2: QCREATE TABLE IF NOT EXISTS uniform_trade(stocksymbol INT, time INT, quantity INT, price INT);
+ Exec Q3: QCOPY OFFSET 2 INTO uniform_trade FROM  '/home/yg3370/AQuery2/tests/uniform_trade_data.csv'  ON SERVER    USING DELIMITERS  ',';
+Parse Time: 0.015494108200073242, Codegen Time: 0.0034613609313964844, Compile Time: 0.5725488662719727, Execution Time: 5.039196491241455.
+Total Time: 5.6307008266448975
+1:run origin query on fractal table
+QSELECT stocksymbol, AVG(price) AS avg_price  FROM trade WHERE ((stocksymbol = 3456)  AND  (time > 1000))  GROUP BY stocksymbol  ;
+Pdll_6cEOmV
+c++ -shared   -fPIC -include server/pch.hpp out.cpp libaquery.a  -I/usr/local/include/monetdb -I/usr/include/monetdb    -lmonetdbe -O3 -DNDEBUG  -fno-semantic-interposition -march=native -flto  --std=c++1z -o dll.so
+ Exec Q0: QSELECT stocksymbol, AVG(price) AS avg_price  FROM trade WHERE ((stocksymbol = 3456)  AND  (time > 1000))  GROUP BY stocksymbol  ;
+ Dbg: Getting col stocksymbol, type: monetdbe_int32_t
+Dbg: Getting col stocksymbol, type: monetdbe_int32_t
+Dbg: Getting col avg_price, type: monetdbe_double
+Dbg: Getting col avg_price, type: monetdbe_double
+stocksymbol | avg_price 
+========================
+3456 235.281
+done.
+Parse Time: 0.021631956100463867, Codegen Time: 0.006242990493774414, Compile Time: 0.8703300952911377, Execution Time: 0.202042818069458.
+Total Time: 1.100247859954834
+exp1:run origin query on uniform table
+QSELECT stocksymbol, AVG(price) AS avg_price  FROM uniform_trade WHERE ((stocksymbol = '3456')  AND  (time > 1000))  GROUP BY stocksymbol  ;
+Pdll_6z7DDf
+c++ -shared   -fPIC -include server/pch.hpp out.cpp libaquery.a  -I/usr/local/include/monetdb -I/usr/include/monetdb    -lmonetdbe -O3 -DNDEBUG  -fno-semantic-interposition -march=native -flto  --std=c++1z -o dll.so
+Exec Q0: QSELECT stocksymbol, AVG(price) AS avg_price  FROM uniform_trade WHERE ((stocksymbol = '3456')  AND  (time > 1000))  GROUP BY stocksymbol  ;
+ Dbg: Getting col stocksymbol, type: monetdbe_int32_t
+Dbg: Getting col stocksymbol, type: monetdbe_int32_t
+Dbg: Getting col avg_price, type: monetdbe_double
+Dbg: Getting col avg_price, type: monetdbe_double
+stocksymbol | avg_price 
+========================
+3456 471.552
+done.
+Parse Time: 0.06981778144836426, Codegen Time: 0.005981922149658203, Compile Time: 0.9151251316070557, Execution Time: 0.1409013271331787.
+Total Time: 1.1318261623382568
+2:apply index
+c++ -shared   -fPIC -include server/pch.hpp out.cpp libaquery.a  -I/usr/local/include/monetdb -I/usr/include/monetdb    -lmonetdbe -O3 -DNDEBUG  -fno-semantic-interposition -march=native -flto  --std=c++1z -o dll.so
+Parse Time: 0.0524442195892334, Codegen Time: 0.002730131149291992, Compile Time: 0.5834801197052002, Execution Time: 0.05672764778137207.
+Total Time: 0.6953821182250977
+2:run query after applying index on time and stocksymbol on fractal table
+QSELECT stocksymbol, AVG(price) AS avg_price  FROM trade WHERE ((stocksymbol = 3456)  AND  (time > 1000))  GROUP BY stocksymbol  ;
+Pdll_3wh1tu
+c++ -shared   -fPIC -include server/pch.hpp out.cpp libaquery.a  -I/usr/local/include/monetdb -I/usr/include/monetdb    -lmonetdbe -O3 -DNDEBUG  -fno-semantic-interposition -march=native -flto  --std=c++1z -o dll.so
+Exec Q0: QSELECT stocksymbol, AVG(price) AS avg_price  FROM trade WHERE ((stocksymbol = 3456)  AND  (time > 1000))  GROUP BY stocksymbol  ;
+ Dbg: Getting col stocksymbol, type: monetdbe_int32_t
+Dbg: Getting col stocksymbol, type: monetdbe_int32_t
+Dbg: Getting col avg_price, type: monetdbe_double
+Dbg: Getting col avg_price, type: monetdbe_double
+stocksymbol | avg_price 
+========================
+3456 235.281
+done.
+Parse Time: 0.01647663116455078, Codegen Time: 0.00459742546081543, Compile Time: 0.9051854610443115, Execution Time: 0.10157632827758789.
+Total Time: 1.0278358459472656
+2:run query after applying index on time and stocksymbol on uniform table
+QSELECT stocksymbol, AVG(price) AS avg_price  FROM uniform_trade WHERE ((stocksymbol = '3456')  AND  (time > 1000))  GROUP BY stocksymbol  ;
+Pdll_3toSSC
+c++ -shared   -fPIC -include server/pch.hpp out.cpp libaquery.a  -I/usr/local/include/monetdb -I/usr/include/monetdb    -lmonetdbe -O3 -DNDEBUG  -fno-semantic-interposition -march=native -flto  --std=c++1z -o dll.so
+Exec Q0: QSELECT stocksymbol, AVG(price) AS avg_price  FROM uniform_trade WHERE ((stocksymbol = '3456')  AND  (time > 1000))  GROUP BY stocksymbol  ;
+ Dbg: Getting col stocksymbol, type: monetdbe_int32_t
+Dbg: Getting col stocksymbol, type: monetdbe_int32_t
+Dbg: Getting col avg_price, type: monetdbe_double
+Dbg: Getting col avg_price, type: monetdbe_double
+stocksymbol | avg_price 
+========================
+3456 471.552
+done.
+Parse Time: 0.014725446701049805, Codegen Time: 0.0046541690826416016, Compile Time: 0.8817977905273438, Execution Time: 0.14937710762023926.
+Total Time: 1.0505545139312744
+
+Bye.
+
+Bye.
+]0;yg3370@linserv1:~/AQuery2[?2004h[yg3370@linserv1 AQuery2]$ exit
+[?2004lexit
+
+Script done on 2024-11-13 09:44:03-05:00 [COMMAND_EXIT_CODE="0"]

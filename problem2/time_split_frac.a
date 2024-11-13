@@ -1,0 +1,25 @@
+SELECT t1.stocksymbol,
+      (t1.avg_price + t2.avg_price + t3.avg_price + t4.avg_price + t5.avg_price +
+       t6.avg_price + t7.avg_price + t8.avg_price + t9.avg_price + t10.avg_price) / 10 as final_avg_price
+FROM frac_trade_1m t1,
+    frac_trade_1m_2m t2,
+    frac_trade_2m_3m t3,
+    frac_trade_3m_4m t4,
+    frac_trade_4m_5m t5,
+    frac_trade_5m_6m t6,
+    frac_trade_6m_7m t7,
+    frac_trade_7m_8m t8,
+    frac_trade_8m_9m t9,
+    frac_trade_9m_10m t10
+WHERE t1.stocksymbol = t2.stocksymbol
+ AND t2.stocksymbol = t3.stocksymbol
+ AND t3.stocksymbol = t4.stocksymbol
+ AND t4.stocksymbol = t5.stocksymbol
+ AND t5.stocksymbol = t6.stocksymbol
+
+ AND t6.stocksymbol = t7.stocksymbol
+ AND t7.stocksymbol = t8.stocksymbol
+ AND t8.stocksymbol = t9.stocksymbol
+ AND t9.stocksymbol = t10.stocksymbol
+ AND t1.stocksymbol = 3456;
+

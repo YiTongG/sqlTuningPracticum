@@ -1,0 +1,6 @@
+SELECT stocksymbol, AVG(price) AS avg_price
+FROM uniform_trade
+WHERE stocksymbol = "3456" and time>1000
+GROUP BY stocksymbol
+stats
+

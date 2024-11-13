@@ -1,0 +1,6 @@
+CREATE TABLE trade (stocksymbol INT, time INT, quantity INT, price INT)
+
+LOAD DATA INFILE "tests/trades.csv" INTO TABLE trade  FIELDS TERMINATED BY ","
+CREATE TABLE uniform_trade (stocksymbol INT, time INT, quantity INT, price INT)
+
+LOAD DATA INFILE "tests/uniform_trade_data.csv" INTO TABLE uniform_trade  FIELDS TERMINATED BY ","

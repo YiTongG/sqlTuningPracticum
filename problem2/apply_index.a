@@ -1,0 +1,4 @@
+CREATE INDEX idx_stocksymbol ON trade (stocksymbol);
+CREATE INDEX idx_time ON trade (time);
+CREATE INDEX idx_stocksymbol ON uniform_trade (stocksymbol);
+CREATE INDEX idx_time ON uniform_trade (time);

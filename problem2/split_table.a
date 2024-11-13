@@ -1,0 +1,89 @@
+CREATE TABLE uni_trade_1m as
+    select stocksymbol,AVG(price) as avg_price from uniform_trade where
+    time >= 1000 AND time <= 1000000
+    group by stocksymbol
+
+CREATE TABLE uni_trade_1m_2m as
+    select stocksymbol,AVG(price) as avg_price from uniform_trade where
+    time > 1000000 AND time <= 2000000
+    group by stocksymbol
+
+CREATE TABLE uni_trade_2m_3m as
+    select stocksymbol,AVG(price) as avg_price from uniform_trade where
+    time > 2000000 AND time <= 3000000
+    group by stocksymbol
+CREATE TABLE uni_trade_3m_4m as
+    select stocksymbol,AVG(price) as avg_price from uniform_trade where
+    time > 3000000 AND time <= 4000000
+    group by stocksymbol
+CREATE TABLE uni_trade_4m_5m as
+    select stocksymbol,AVG(price) as avg_price from uniform_trade where
+    time > 4000000 AND time <= 5000000
+    group by stocksymbol
+
+CREATE TABLE uni_trade_5m_6m as
+    select stocksymbol,AVG(price) as avg_price from uniform_trade where
+    time > 5000000 AND time <= 6000000
+    group by stocksymbol
+CREATE TABLE uni_trade_6m_7m as
+    select stocksymbol,AVG(price) as avg_price from uniform_trade where
+    time > 6000000 AND time <= 7000000
+    group by stocksymbol
+CREATE TABLE uni_trade_7m_8m as
+    select stocksymbol,AVG(price) as avg_price from uniform_trade where
+    time > 7000000 AND time <= 8000000
+    group by stocksymbol
+CREATE TABLE uni_trade_8m_9m as
+    select stocksymbol,AVG(price) as avg_price from uniform_trade where
+    time > 8000000 AND time <= 9000000
+    group by stocksymbol
+CREATE TABLE uni_trade_9m_10m as
+    select stocksymbol,AVG(price) as avg_price from uniform_trade where
+    time > 9000000 AND time <= 10000000
+    group by stocksymbol
+
+
+
+CREATE TABLE frac_trade_1m as
+    select stocksymbol,AVG(price) as avg_price from trade where
+    time >= 1000 AND time <= 1000000
+    group by stocksymbol
+
+CREATE TABLE frac_trade_1m_2m as
+    select stocksymbol,AVG(price) as avg_price from trade where
+    time > 1000000 AND time <= 2000000
+    group by stocksymbol
+
+CREATE TABLE frac_trade_2m_3m as
+    select stocksymbol,AVG(price) as avg_price from trade where
+    time > 2000000 AND time <= 3000000
+    group by stocksymbol
+CREATE TABLE frac_trade_3m_4m as
+    select stocksymbol,AVG(price) as avg_price from trade where
+    time > 3000000 AND time <= 4000000
+    group by stocksymbol
+CREATE TABLE frac_trade_4m_5m as
+    select stocksymbol,AVG(price) as avg_price from trade where
+    time > 4000000 AND time <= 5000000
+    group by stocksymbol
+
+CREATE TABLE frac_trade_5m_6m as
+    select stocksymbol,AVG(price) as avg_price from trade where
+    time > 5000000 AND time <= 6000000
+    group by stocksymbol
+CREATE TABLE frac_trade_6m_7m as
+    select stocksymbol,AVG(price) as avg_price from trade where
+    time > 6000000 AND time <= 7000000
+    group by stocksymbol
+CREATE TABLE frac_trade_7m_8m as
+    select stocksymbol,AVG(price) as avg_price from trade where
+    time > 7000000 AND time <= 8000000
+    group by stocksymbol
+CREATE TABLE frac_trade_8m_9m as
+    select stocksymbol,AVG(price) as avg_price from trade where
+    time > 8000000 AND time <= 9000000
+    group by stocksymbol
+CREATE TABLE frac_trade_9m_10m as
+    select stocksymbol,AVG(price) as avg_price from trade where
+    time > 9000000 AND time <= 10000000
+    group by stocksymbol

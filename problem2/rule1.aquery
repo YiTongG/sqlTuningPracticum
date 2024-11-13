@@ -1,0 +1,24 @@
+ stats on
+
+select "Hello, World!"
+exec
+
+echo create fractal and uniform trade table
+f setup.a
+exec
+echo 1:run origin query on fractal table
+f origin_frac.a
+exec
+echo exp1:run origin query on uniform table
+f origin_uni.a
+exec
+echo 2:apply index
+f apply_index.a
+exec
+echo 2:run query after applying index on time and stocksymbol on fractal table
+f origin_frac.a
+exec
+echo 2:run query after applying index on time and stocksymbol on uniform table
+f origin_uni.a
+exec
+exit

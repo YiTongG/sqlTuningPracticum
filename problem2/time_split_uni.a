@@ -1,0 +1,24 @@
+SELECT d1.stocksymbol,
+      (d1.avg_price + d2.avg_price + d3.avg_price + d4.avg_price + d5.avg_price +
+       d6.avg_price + d7.avg_price + d8.avg_price + d9.avg_price + d10.avg_price) / 10 as final_avg_price
+FROM uni_trade_1m d1,
+    uni_trade_1m_2m d2,
+    uni_trade_2m_3m d3,
+    uni_trade_3m_4m d4,
+    uni_trade_4m_5m d5,
+    uni_trade_5m_6m d6,
+    uni_trade_6m_7m d7,
+    uni_trade_7m_8m d8,
+    uni_trade_8m_9m d9,
+    uni_trade_9m_10m d10
+WHERE d1.stocksymbol = d2.stocksymbol
+ AND d2.stocksymbol = d3.stocksymbol
+ AND d3.stocksymbol = d4.stocksymbol
+ AND d4.stocksymbol = d5.stocksymbol
+ AND d5.stocksymbol = d6.stocksymbol
+
+ AND d6.stocksymbol = d7.stocksymbol
+ AND d7.stocksymbol = d8.stocksymbol
+ AND d8.stocksymbol = d9.stocksymbol
+ AND d9.stocksymbol = d10.stocksymbol
+ AND d1.stocksymbol = 3456;

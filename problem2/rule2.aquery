@@ -1,0 +1,23 @@
+ stats on
+
+
+echo create fractal and uniform trade table
+f setup.a
+exec
+echo :run origin query on fractal table
+f origin_frac.a
+exec
+echo run origin query on uniform table
+f origin_uni.a
+exec
+echo split table by time
+f split_table.a
+exec
+echo query apply to time-split fractal tables
+f time_split_frac.a
+exec
+echo query apply to time-split uniform tables
+f time_split_uni.a
+exec
+exit
+
