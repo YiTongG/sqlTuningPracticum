@@ -1,0 +1,111 @@
+Script started on 2024-11-13 22:10:26-05:00 [TERM="xterm" TTY="/dev/pts/16" COLUMNS="155" LINES="58"]
+]0;yg3370@linserv1:~/pgsql/data[?2004h[yg3370@linserv1 data]$ exitpython3 ./prompt.pyexit[Kpython3 ./prompt.pyexit[Kpython3 ./prompt.py[2Pvim split_table.a[14@mv chopping_uni.a[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cls[Kvim rule2.aqueryls[Kmv chopping_uni.a split_table.a[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[14Pvim[C[C[C[C[C[C[C[C[C[C[C[C[C[Cpython3 ./prompt.pyexit[Kpython3 ./prompt.pyexit[Kpython3 ./prompt.pyexit[K[K[7mpsql -p 54457 -h /home/yg3370/pgsql/data/run tradedb[27m[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cpsql -p 54457 -h /home/yg3370/pgsql/data/run tradedb
+[?2004lpsql (13.16)
+Type "help" for help.
+
+[?2004htradedb=# \[K/i [K[K[K\i tests.sql
+[?2004l=== Starting Performance Test ===
+Timing is on.
+
+1. Creating Original Tables
+CREATE TABLE
+Time: 19.572 ms
+CREATE TABLE
+Time: 3.576 ms
+
+2. Importing Data
+COPY 10000000
+Time: 17615.767 ms (00:17.616)
+COPY 10000000
+Time: 16222.616 ms (00:16.223)
+
+3. Testing Original Query on Trade
+ stocksymbol |      avg_price       
+-------------+----------------------
+        3456 | 235.2812500000000000
+(1 row)
+
+Time: 5911.160 ms (00:05.911)
+
+4. Testing Original Query on Uniform Trade
+ stocksymbol |      avg_price       
+-------------+----------------------
+        3456 | 471.5524475524475524
+(1 row)
+
+Time: 5613.662 ms (00:05.614)
+
+5. Creating Indexes
+CREATE INDEX
+Time: 17305.169 ms (00:17.305)
+CREATE INDEX
+Time: 14263.991 ms (00:14.264)
+
+6. Testing Query with Index on Trade
+ stocksymbol |      avg_price       
+-------------+----------------------
+        3456 | 235.2812500000000000
+(1 row)
+
+Time: 4.070 ms
+
+7. Testing Query with Index on Uniform Trade
+ stocksymbol |      avg_price       
+-------------+----------------------
+        3456 | 471.5524475524475524
+(1 row)
+
+Time: 4.166 ms
+
+8. Dropping Indexes
+DROP INDEX
+Time: 23.687 ms
+DROP INDEX
+Time: 19.745 ms
+
+9. Creating Split Tables for Trade
+SELECT 1999001
+Time: 4979.896 ms (00:04.980)
+SELECT 2000000
+Time: 7121.381 ms (00:07.121)
+SELECT 2000000
+Time: 9983.627 ms (00:09.984)
+SELECT 2000000
+Time: 6336.537 ms (00:06.337)
+SELECT 2000000
+Time: 7217.851 ms (00:07.218)
+
+10. Creating Split Tables for Uniform Trade
+SELECT 1999001
+Time: 8064.384 ms (00:08.064)
+SELECT 2000000
+Time: 7076.630 ms (00:07.077)
+SELECT 2000000
+Time: 7485.654 ms (00:07.486)
+SELECT 2000000
+Time: 6674.982 ms (00:06.675)
+SELECT 2000000
+Time: 7314.494 ms (00:07.314)
+
+11. Testing Split Table Query on Trade
+ stocksymbol |      avg_price       
+-------------+----------------------
+        3456 | 235.2812500000000000
+(1 row)
+
+Time: 4827.680 ms (00:04.828)
+
+12. Testing Split Table Query on Uniform Trade
+ stocksymbol |      avg_price       
+-------------+----------------------
+        3456 | 471.5524475524475524
+(1 row)
+
+Time: 3852.909 ms (00:03.853)
+
+=== Test Complete ===
+[?2004htradedb=# exit
+[?2004l]0;yg3370@linserv1:~/pgsql/data[?2004h[yg3370@linserv1 data]$ exit
+[?2004lexit
+
+Script done on 2024-11-13 22:14:03-05:00 [COMMAND_EXIT_CODE="0"]
